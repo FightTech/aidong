@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#F1ECEC"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/action"
+        android:layout_width="match_parent"
+        android:background="@drawable/nav_bg"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全国"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:drawableRight="@drawable/downlist"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="爱玩"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+
+            />
+
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:layout_below="@id/action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/games"
+                android:background="#FFFFFF"
+                android:layout_height="200dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/challenge"
+                    android:layout_margin="10dp"
+                    />
+                <TextView
+                    android:id="@+id/more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/more"
+                    android:layout_alignParentEnd="true"
+                    android:text="更多"
+                    android:layout_margin="10dp"
+                    />
+                <LinearLayout
+                    android:layout_below="@id/more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="极速比赛"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="极速比赛"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="极速比赛"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/actvity"
+                android:background="#FFFFFF"
+                android:layout_below="@id/games"
+                android:layout_marginTop="15dp"
+                android:layout_height="200dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/activity"
+                    android:layout_margin="10dp"
+                    />
+                <TextView
+                    android:id="@+id/more_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/more"
+                    android:layout_alignParentEnd="true"
+                    android:text="更多"
+                    android:layout_margin="10dp"
+                    />
+                <LinearLayout
+                    android:layout_below="@id/more_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="极速比赛"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="极速比赛"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="极速比赛"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#FFFFFF"
+                android:id="@+id/training"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/actvity"
+                android:layout_height="200dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/training"
+                    android:layout_margin="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/more_training"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/more"
+                    android:layout_alignParentEnd="true"
+                    android:text="更多"
+                    android:layout_margin="10dp"
+                    />
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:drawableTop="@drawable/training_bg"
+                    android:text="查看详情"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_horizontal"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/more_training"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#FFFFFF"
+                android:id="@+id/commonweal"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/training"
+                android:layout_height="200dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/commonweal"
+                    android:layout_margin="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/more_commonweal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/more"
+                    android:layout_alignParentEnd="true"
+                    android:text="更多"
+                    android:layout_margin="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:drawableTop="@drawable/commonweal_bg"
+                    android:text="查看详情"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_horizontal"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/more_commonweal"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
