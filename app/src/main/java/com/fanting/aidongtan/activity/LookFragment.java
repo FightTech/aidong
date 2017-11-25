@@ -2,7 +2,6 @@ package com.fanting.aidongtan.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.fanting.aidongtan.utils.ItemUtils;
 import com.waynell.videolist.visibility.calculator.SingleListViewItemActiveCalculator;
 import com.waynell.videolist.visibility.items.ListItem;
 import com.waynell.videolist.visibility.scroll.ItemsProvider;
-import com.waynell.videolist.visibility.scroll.RecyclerViewItemPositionGetter;
 
 import java.util.List;
 
@@ -36,30 +34,30 @@ public class LookFragment extends Fragment  {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_look, null);
-		mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
-
-		final MyAdapter adapter = new MyAdapter();
-		final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-
-		mCalculator = new SingleListViewItemActiveCalculator(adapter,
-				new RecyclerViewItemPositionGetter(layoutManager, mRecyclerView));
-
-		mRecyclerView.setLayoutManager(layoutManager);
-		mRecyclerView.setAdapter(adapter);
-		mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-			@Override
-			public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-				mScrollState = newState;
-				if(newState == RecyclerView.SCROLL_STATE_IDLE && adapter.getItemCount() > 0){
-					mCalculator.onScrollStateIdle();
-				}
-			}
-
-			@Override
-			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-				mCalculator.onScrolled(mScrollState);
-			}
-		});
+//		mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+//
+//		final MyAdapter adapter = new MyAdapter();
+//		final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+//
+//		mCalculator = new SingleListViewItemActiveCalculator(adapter,
+//				new RecyclerViewItemPositionGetter(layoutManager, mRecyclerView));
+//
+//		mRecyclerView.setLayoutManager(layoutManager);
+//		mRecyclerView.setAdapter(adapter);
+//		mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//			@Override
+//			public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//				mScrollState = newState;
+//				if(newState == RecyclerView.SCROLL_STATE_IDLE && adapter.getItemCount() > 0){
+//					mCalculator.onScrollStateIdle();
+//				}
+//			}
+//
+//			@Override
+//			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//				mCalculator.onScrolled(mScrollState);
+//			}
+//		});
 
 		return view;
 	}
@@ -118,7 +116,7 @@ public class LookFragment extends Fragment  {
 			public MyViewHolder(View view)
 			{
 				super(view);
-				tv = (TextView) view.findViewById(R.id.id_num);
+				//tv = (TextView) view.findViewById(R.id.id_num);
 			}
 		}
 
