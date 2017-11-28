@@ -112,7 +112,7 @@
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/follow"
         android:layout_width="45dp"
         android:layout_height="25dp"
         android:layout_below="@id/line"
