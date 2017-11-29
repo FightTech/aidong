@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 
 public class SportFragment extends Fragment implements OnClickListener {
 
@@ -28,6 +32,10 @@ public class SportFragment extends Fragment implements OnClickListener {
     private List<BannerBean> datas = new ArrayList<>();
     private BannerAdapter mAdapter;
 
+    @Bind(R.id.ad_vip)
+    ImageView imFind;
+
+
     public SportFragment() {
     }
 
@@ -35,6 +43,7 @@ public class SportFragment extends Fragment implements OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sport, null);
+        ButterKnife.bind(this,view);
         initView(view);
         initBanner(view);
         initData();
@@ -61,6 +70,11 @@ public class SportFragment extends Fragment implements OnClickListener {
 
     private void addListener() {
 
+    }
+
+    @OnClick(R.id.ad_vip)
+    public void findGym(View view) {
+        startActivity(new Intent(getActivity(),GymMapActivity.class));
     }
 
     @Override
