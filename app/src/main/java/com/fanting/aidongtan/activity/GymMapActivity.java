@@ -20,7 +20,7 @@ public class GymMapActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
-        setContentView(R.layout.activity_gynmap);
+        setContentView(R.layout.activity_gymmap);
         mMapView = (MapView) findViewById(R.id.bmapView);
 
     }

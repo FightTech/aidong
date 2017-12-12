@@ -1,0 +1,133 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+	<com.baidu.mapapi.map.MapView
+		android:id="@+id/bmapView"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:clickable="true" />
+
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:background="@drawable/nav_bg1"
+		android:layout_height="80dp">
+		<ImageView
+			android:id="@+id/image_back"
+			android:layout_width="wrap_content"
+			android:layout_marginTop="40dp"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="15dp"
+			android:background="@drawable/back_bg"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:text="全部"
+			android:textSize="25sp"
+			android:layout_marginTop="30dp"
+			android:textColor="#ffffff"
+			/>
+		<ImageView
+			android:id="@+id/image_list"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_marginRight="15dp"
+			android:layout_marginTop="40dp"
+			android:background="@drawable/list_bg"
+			/>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/search_bg"
+			android:layout_toLeftOf="@+id/image_list"
+			android:id="@+id/image_search"
+			android:layout_marginRight="15dp"
+			android:layout_marginTop="40dp"
+			/>
+
+
+
+
+
+
+
+
+	</RelativeLayout>
+
+	<com.fanting.aidongtan.widgets.FlipViewGroup
+		android:layout_width="match_parent"
+		android:layout_height="220dp"
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"
+		>
+	</com.fanting.aidongtan.widgets.FlipViewGroup>
+
+
+
+	<RadioGroup
+		android:layout_width="match_parent"
+		android:id="@+id/rg1"
+		android:layout_alignParentBottom="true"
+		android:background="#000000"
+		android:gravity="center"
+		android:weightSum="3"
+		android:orientation="horizontal"
+		android:layout_height="75dp">
+		<RadioButton
+			android:id="@+id/type_rb1"
+			android:layout_width="match_parent"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="8dp"
+			android:background="@drawable/gym_type_selector"
+			android:drawableLeft="@drawable/vip_bg"
+			android:textColor="#ffffff"
+			android:drawablePadding="15dp"
+			android:paddingLeft="30dp"
+			android:button="@null"
+			android:layout_marginRight="4dp"
+			android:text="会员"
+			/>
+		<RadioButton
+			android:id="@+id/type_rb2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@drawable/gym_type_selector"
+			android:drawableLeft="@drawable/date_bg"
+			android:layout_marginLeft="4dp"
+			android:layout_marginRight="4dp"
+			android:drawablePadding="15dp"
+			android:textColor="#ffffff"
+			android:paddingLeft="30dp"
+			android:button="@null"
+			android:text="约练"
+			/>
+		<RadioButton
+			android:id="@+id/type_rb3"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginLeft="4dp"
+			android:layout_marginRight="8dp"
+			android:background="@drawable/gym_type_selector"
+			android:drawableLeft="@drawable/star_bg"
+			android:drawablePadding="15dp"
+			android:textColor="#ffffff"
+			android:paddingLeft="30dp"
+			android:button="@null"
+			android:text="常去"
+			android:checked="true"
+			/>
+
+
+
+
+	</RadioGroup>
+
+
+</RelativeLayout>

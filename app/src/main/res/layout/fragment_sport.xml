@@ -74,7 +74,7 @@
 
 
         <TextView
-            android:id="@+id/imageView1"
+            android:id="@+id/tv_rent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -84,7 +84,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/ad1" />
         <TextView
-            android:id="@+id/imageView2"
+            android:id="@+id/tv_video"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -94,7 +94,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/ad2" />
         <TextView
-            android:id="@+id/imageView3"
+            android:id="@+id/tv_coach"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -104,7 +104,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/ad3" />
         <TextView
-            android:id="@+id/imageView4"
+            android:id="@+id/tv_wiki"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

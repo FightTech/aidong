@@ -40,8 +40,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.GymMapActivity"/>
-
+        <activity android:name=".activity.GymMapActivity" android:theme="@style/TranslucentTheme"/>
+        <activity android:name=".activity.RentActivity" android:theme="@style/TranslucentTheme"/>
     </application>
 
 </manifest>

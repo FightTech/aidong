@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.fanting.aidongtan.R;
 import com.fanting.aidongtan.widgets.BannerBaseAdapter;
@@ -34,6 +35,30 @@ public class SportFragment extends Fragment implements OnClickListener {
 
     @Bind(R.id.ad_vip)
     ImageView imFind;
+
+    @Bind(R.id.tv_rent)
+    TextView imRent;
+
+    @OnClick({R.id.tv_rent,R.id.tv_video,R.id.tv_coach,R.id.tv_wiki})
+    public void toActivite(View view){
+        Intent intent = new Intent();
+
+
+
+        switch (view.getId()){
+            case R.id.tv_rent:
+                intent.setClass(getActivity(),RentActivity.class);
+                getActivity().startActivity(intent);
+                break;
+            case R.id.tv_video:
+                break;
+            case R.id.tv_coach:
+                break;
+            case R.id.tv_wiki:
+                break;
+
+        }
+    }
 
 
     public SportFragment() {
