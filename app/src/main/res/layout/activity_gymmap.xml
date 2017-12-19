@@ -48,23 +48,16 @@
 			android:layout_marginRight="15dp"
 			android:layout_marginTop="40dp"
 			/>
-
-
-
-
-
-
-
-
 	</RelativeLayout>
 
-	<com.fanting.aidongtan.widgets.FlipViewGroup
+	<android.support.v4.view.ViewPager
 		android:layout_width="match_parent"
-		android:layout_height="220dp"
+		android:layout_height="230dp"
+		android:id="@+id/vp"
 		android:layout_centerHorizontal="true"
 		android:layout_alignParentBottom="true"
 		>
-	</com.fanting.aidongtan.widgets.FlipViewGroup>
+	</android.support.v4.view.ViewPager>
 
 
 

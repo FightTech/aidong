@@ -1,58 +1,66 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@drawable/flip_map_bg"
-	>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/flip_map_bg"
+    android:layout_height="match_parent"
 
-	<ImageView
-		android:id="@+id/image_logo"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@drawable/gym_sample"
-		android:layout_marginLeft="65dp"
-		android:layout_marginTop="18dp"
-		/>
-	<TextView
-		android:id="@+id/tv_name"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_toRightOf="@+id/image_logo"
-		android:layout_marginLeft="25dp"
-		android:layout_marginTop="18dp"
-		android:text="浩沙健身"
-		android:textSize="15sp"
-		android:textColor="#000000"
-		/>
+    >
 
-	<TextView
-		android:id="@+id/tv_distance"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignBottom="@+id/image_logo"
-		android:layout_alignStart="@+id/tv_name"
-		android:text="1.5KM" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="35dp"
 
-	<TextView
-		android:id="@+id/tv_seat"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="20空位"
-		android:layout_marginLeft="10dp"
-		android:layout_alignBaseline="@+id/tv_distance"
-		android:layout_alignBottom="@+id/tv_distance"
-		android:layout_toEndOf="@+id/tv_distance" />
+        >
 
-	<Button
-		android:id="@+id/button"
-		android:layout_width="wrap_content"
-		android:layout_height="30dp"
-		android:layout_alignStart="@+id/image_logo"
-		android:layout_below="@+id/image_logo"
-		android:layout_marginTop="27dp"
-		android:textColor="#ffffff"
-		android:background="@drawable/nav_bg1"
-		android:text="Go! 跟我走" />
+        <ImageView
+            android:id="@+id/image_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/gym_sample" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="18dp"
+            android:layout_toRightOf="@+id/image_logo"
+            android:text="浩沙健身"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/image_logo"
+            android:layout_alignStart="@+id/tv_name"
+            android:text="1.5KM" />
+
+        <TextView
+            android:id="@+id/tv_seat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_distance"
+            android:layout_alignBottom="@+id/tv_distance"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/tv_distance"
+            android:text="20空位" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignStart="@+id/image_logo"
+            android:layout_below="@+id/image_logo"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/nav_bg1"
+            android:text="Go! 跟我走"
+            android:textColor="#ffffff" />
 
 
+    </RelativeLayout>
 </RelativeLayout>

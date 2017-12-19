@@ -60,4 +60,5 @@ dependencies {
     implementation files('libs/BaiduLBS_Android.jar')
     compile project(':lib')
     compile project(':tablayoutsupport')
+    implementation 'com.nineoldandroids:library:2.4.0'
 }
