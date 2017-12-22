@@ -51,6 +51,8 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
     BaiduMap mBaiduMap;
 
 
+    List<LatLng> latLngs;
+
     //是否第一次定位，如果是第一次定位的话要将自己的位置显示在地图 中间
     private boolean isFirstLocation = true;
     //定位相关
@@ -104,12 +106,65 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
 
 
         //初始化地图
-           initMap();
+        initMap();
         //定位
-
         initLocation();
+        getLatLists();
+        setMarker(false);
+    }
+
+    private void setMarker(boolean b) {
+        setMarker(b, null);
+    }
 
 
+    private void setMarker(boolean isClick, Marker marker) {
+
+        mBaiduMap.clear();
+
+        BitmapDescriptor bitmap;
+
+        if (latLngs != null && latLngs.size() != 0) {
+
+
+            for (LatLng point : latLngs) {
+                //构建Marker图标
+                if (isClick) {
+                    if (marker.getExtraInfo().getString("latlong").equals(point.toString())) {
+                        bitmap = BitmapDescriptorFactory
+                                .fromResource(R.drawable.store_marker_selected);
+                    } else {
+                        bitmap = BitmapDescriptorFactory
+                                .fromResource(R.drawable.store_marker);
+                    }
+                } else {
+                    bitmap = BitmapDescriptorFactory
+                            .fromResource(R.drawable.store_marker);
+                }
+
+
+                Bundle bundle = new Bundle();
+                bundle.putString("latlong", point.toString());
+                //构建MarkerOption，用于在地图上添加Marker
+                OverlayOptions option = new MarkerOptions()
+                        .position(point)
+                        .icon(bitmap);
+                //在地图上添加Marker，并显示
+                Marker myMarker = (Marker) (mBaiduMap.addOverlay(option));
+                myMarker.setExtraInfo(bundle);
+            }
+
+        }
+
+
+    }
+
+    private void getLatLists() {
+        latLngs = new ArrayList<>();
+        latLngs.add(new LatLng(39.963175, 116.400244));
+        latLngs.add(new LatLng(39.951135, 116.409254));
+        latLngs.add(new LatLng(39.925125, 116.404274));
+        latLngs.add(new LatLng(39.997115, 116.406204));
     }
 
     private void initMap() {
@@ -117,6 +172,7 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
         mBaiduMap.setMyLocationEnabled(true);
         mBaiduMap.setCompassEnable(false);
         mBaiduMap.setOnMarkerClickListener(this);
+        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
     }
 
     private LocationManager locationManager;
@@ -149,22 +205,7 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
         locationManager.requestLocationUpdates(provider, 5000, 1,
                 locationListener);
 
-        LatLng point = new LatLng(39.963175, 116.400244);
 
-        //构建Marker图标
-
-        BitmapDescriptor bitmap = BitmapDescriptorFactory
-                .fromResource(R.drawable.store_marker);
-
-        //构建MarkerOption，用于在地图上添加Marker
-
-        OverlayOptions option = new MarkerOptions()
-                .position(point)
-                .icon(bitmap);
-
-        //在地图上添加Marker，并显示
-
-        mBaiduMap.addOverlay(option);
     }
 
     @Override
@@ -183,10 +224,8 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        BitmapDescriptor bitmap = BitmapDescriptorFactory
-                .fromResource(R.drawable.store_marker_selected);
-        marker.setIcon(bitmap);
-        Log.i("marker",marker.toString());
+        setMarker(true, marker);
+        Log.i("marker", marker.toString());
         return false;
     }
 
@@ -290,7 +329,7 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
             MapStatusUpdate update = MapStatusUpdateFactory.newLatLng(ll);
             // 移动到某经纬度
             mBaiduMap.animateMapStatus(update);
-            update = MapStatusUpdateFactory.zoomBy(4f);
+            update = MapStatusUpdateFactory.zoomTo(10f);
             // 放大
             mBaiduMap.animateMapStatus(update);
 
@@ -300,24 +339,15 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
         MyLocationData locData = new MyLocationData.Builder().latitude(location.getLatitude())
                 .longitude(location.getLongitude()).build();
 
-// 设置定位数据
+        // 设置定位数据
         mBaiduMap.setMyLocationData(locData);
 
-// 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
+        // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
         mCurrentMarker = BitmapDescriptorFactory
                 .fromResource(R.drawable.my_marker);
         MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
 
-
-
-
-        // 显示个人位置图标
-//        MyLocationData.Builder builder = new MyLocationData.Builder();
-//        builder.latitude(location.getLatitude());
-//        builder.longitude(location.getLongitude());3
-//        MyLocationData data = builder.build();
         mBaiduMap.setMyLocationConfiguration(config);
-       // mBaiduMap.setMyLocationData(data);
 
 
     }
