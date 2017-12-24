@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#F1ECEC"
+    android:layout_height="match_parent" >
+
+
+    <RelativeLayout
+        android:id="@+id/action"
+        android:layout_width="match_parent"
+        android:background="@drawable/nav_bg"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/back_bg"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="賽格健身房"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="15dp"
+        android:background="@color/white"
+        android:layout_below="@+id/action"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/touxiang"
+            android:id="@+id/circleImageView" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:text="賽格健身房"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/circleImageView" />
+
+        <TextView
+            android:id="@+id/tv_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/circleImageView"
+            android:layout_alignStart="@+id/tv_name"
+            android:text="面积:178m²" />
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_area"
+            android:layout_alignBottom="@+id/tv_area"
+            android:layout_toEndOf="@+id/tv_name"
+            android:text="编号:1788409" />
+
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:numStars="5"
+            style="@style/foodRatingBar"
+            android:stepSize="1"
+            android:rating="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:padding="@dimen/view_margin"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/layout_margin"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout4">
+
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:layout_alignParentStart="true"
+            android:text="北京赛格欧体育服务有限公司（简称赛格欧），是国内首家私教馆高端一线品牌。赛格欧强势驻入北京南二环方庄芳城园一区四号楼底商，占地面积500平方米。全套美国“悍马”器械，十四台有氧设备含(跑步机，登山器，靠背式自行车，磁悬力自行车，风阻自......" />
+
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_detail"
+            android:layout_alignParentEnd="true"
+            android:drawableRight="@drawable/more"
+            android:text="更多详情"
+            android:drawablePadding="4dp"
+            android:textColor=" #FB0065" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tv_detail"
+            android:layout_marginTop="12dp"
+            android:text="营业时间：" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_toEndOf="@+id/textView2"
+            android:text="9:00 - 24:00"
+            android:textColor=" #FB0065 " />
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/gray"
+            android:layout_below="@+id/textView2"
+            android:layout_alignEnd="@+id/tv_more"
+            android:id="@+id/view2" />
+
+        <TextView
+            android:id="@+id/tv_tile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="设备信息"
+            android:layout_below="@+id/view2"
+            style="@style/TextTile"
+            android:layout_alignParentStart="true" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/tv_tile"
+            android:id="@+id/equip_list"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="2dp"
+            android:layout_alignParentStart="true"
+             />
+
+    </RelativeLayout>
+
+</RelativeLayout>

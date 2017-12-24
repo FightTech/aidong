@@ -50,14 +50,14 @@
 			/>
 	</RelativeLayout>
 
-	<android.support.v4.view.ViewPager
+<!--	<android.support.v4.view.ViewPager
 		android:layout_width="match_parent"
 		android:layout_height="180dp"
 		android:id="@+id/vp"
 		android:layout_centerHorizontal="true"
 		android:layout_alignParentBottom="true"
 		>
-	</android.support.v4.view.ViewPager>
+	</android.support.v4.view.ViewPager>-->
 
 
 
@@ -116,9 +116,6 @@
 			android:text="常去"
 			android:checked="true"
 			/>
-
-
-
 
 	</RadioGroup>
 
