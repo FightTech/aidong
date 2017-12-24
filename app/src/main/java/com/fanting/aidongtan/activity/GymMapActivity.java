@@ -2,6 +2,7 @@ package com.fanting.aidongtan.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -49,8 +50,6 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
     private ViewPager vp;
     MapView mMapView = null;
     BaiduMap mBaiduMap;
-
-
     List<LatLng> latLngs;
 
     //是否第一次定位，如果是第一次定位的话要将自己的位置显示在地图 中间
@@ -76,41 +75,24 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_gymmap);
         mMapView = (MapView) findViewById(R.id.bmapView);
-        vp = (ViewPager) findViewById(R.id.vp);
+        //        vp = (ViewPager) findViewById(R.id.vp);
         //设置ViewPager的适配器
         gyms.add(new GymItem());
         gyms.add(new GymItem());
         gyms.add(new GymItem());
-        final MyViewPagerAdapter adapter = new MyViewPagerAdapter(gyms, this);
-        vp.setPageTransformer(true, new DepthPageTransformer());
-
-        vp.setAdapter(adapter);
-        vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-
-            }
-        });
-
-
+        // final MyViewPagerAdapter adapter = new MyViewPagerAdapter(gyms, this);
+        //  vp.setPageTransformer(true, new DepthPageTransformer());
         //初始化地图
         initMap();
         //定位
         initLocation();
         getLatLists();
         setMarker(false);
+        gotoDetail();
+    }
+
+    private void gotoDetail() {
+        startActivity(new Intent(GymMapActivity.this, GymAdActivity.class));
     }
 
     private void setMarker(boolean b) {
@@ -153,10 +135,7 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
                 Marker myMarker = (Marker) (mBaiduMap.addOverlay(option));
                 myMarker.setExtraInfo(bundle);
             }
-
         }
-
-
     }
 
     private void getLatLists() {
@@ -329,7 +308,7 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
             MapStatusUpdate update = MapStatusUpdateFactory.newLatLng(ll);
             // 移动到某经纬度
             mBaiduMap.animateMapStatus(update);
-            update = MapStatusUpdateFactory.zoomTo(10f);
+            update = MapStatusUpdateFactory.zoomTo(12f);
             // 放大
             mBaiduMap.animateMapStatus(update);
 
@@ -346,7 +325,6 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
         mCurrentMarker = BitmapDescriptorFactory
                 .fromResource(R.drawable.my_marker);
         MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
-
         mBaiduMap.setMyLocationConfiguration(config);
 
 

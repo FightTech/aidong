@@ -48,6 +48,8 @@
         <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.RegisterSuccessActivity"/>
+        <activity android:name=".activity.GymAdActivity"/>
+        <activity android:name=".activity.GymDetailActivity"/>
     </application>
 
 </manifest>
