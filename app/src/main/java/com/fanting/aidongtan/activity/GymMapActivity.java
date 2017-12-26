@@ -88,7 +88,6 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
         initLocation();
         getLatLists();
         setMarker(false);
-        gotoDetail();
     }
 
     private void gotoDetail() {
@@ -204,6 +203,7 @@ public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickLi
     @Override
     public boolean onMarkerClick(Marker marker) {
         setMarker(true, marker);
+        gotoDetail();
         Log.i("marker", marker.toString());
         return false;
     }

@@ -40,15 +40,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static android.content.ContentValues.TAG;
+
 public class RentEquipFragment extends Fragment {
+
     private int mIndex;
+    private static int type ;
+    private static final int  TYPE_SINGLE=0;
+    private static final int  TYPE_COMBINE=1;
+    private static final int  TYPE_SUIT=2;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView rv = (RecyclerView) inflater.inflate(
                 R.layout.fragment_rent_equip, container, false);
-
+        setType();
         setupRecyclerView(rv);
 //        if (savedInstanceState == null) {
 //            mIndex = getArguments().getInt("index");
@@ -62,6 +69,13 @@ public class RentEquipFragment extends Fragment {
         return rv;
     }
 
+    private void setType() {
+        if (getArguments()!=null){
+            type = getArguments().getInt("type");
+            Log.e("test", "setType: "+ type);
+        }
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -70,10 +84,15 @@ public class RentEquipFragment extends Fragment {
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+
         recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),
                 getRandomSublist(Cheeses.sCheeseStrings, 30)));
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+//    /    if(type==0){
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+//      /  }else{
+//            recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+//        }
+
     }
 
     private List<String> getRandomSublist(String[] array, int amount) {
@@ -122,8 +141,15 @@ public class RentEquipFragment extends Fragment {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.equip_list_item, parent, false);
+            View view;
+            if(type==0){
+                 view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.equip_list_item, parent, false);
+            }else{
+                 view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.equip_list_item, parent, false);
+            }
+
             view.setBackgroundResource(mBackground);
             return new ViewHolder(view);
         }
@@ -131,6 +157,12 @@ public class RentEquipFragment extends Fragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mBoundString = mValues.get(position);
+            if(type==0){
+                holder.name.setText("单品");
+            }else {
+                holder.name.setText("家庭");
+            }
+
             //   holder.mTextView.setText(mValues.get(position));
 
 //            holder.mView.setOnClickListener(new View.OnClickListener() {

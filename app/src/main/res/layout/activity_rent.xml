@@ -65,16 +65,18 @@
             android:layout_height="wrap_content"
             app:tabSelectedTextColor="@color/red"
             app:tabGravity="fill"
-            app:tabMode="scrollable"/>
+            />
     </android.support.design.widget.AppBarLayout>
 
     <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
         android:id="@+id/viewpager"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
         app:rvp_singlePageFling="false"
-        app:rvp_triggerOffset="0.1"
+        app:rvp_triggerOffset="0"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_below="@+id/appbar" />
 

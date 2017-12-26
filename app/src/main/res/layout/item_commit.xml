@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/im_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/avtar"
+        android:layout_margin="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bbs的评论"
+        android:layout_alignTop="@+id/im_card"
+        android:layout_alignStart="@+id/tv_intro" />
+
+    <TextView
+        android:id="@+id/tv_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="体验非常棒！我要常来！"
+        android:layout_alignBottom="@+id/im_card"
+        android:layout_toEndOf="@+id/im_card" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_marginRight="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="2017年11月23日 09:28"
+        android:layout_alignTop="@+id/tv_name"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
