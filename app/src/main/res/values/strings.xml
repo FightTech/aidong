@@ -5,4 +5,11 @@
         <item>组合租</item>
         <item>组合租</item>
     </string-array>
+
+    <string-array name="good_detail">
+        <item>商品</item>
+        <item>详情</item>
+        <item>评价</item>
+    </string-array>
+
 </resources>

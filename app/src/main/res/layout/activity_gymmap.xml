@@ -2,16 +2,20 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent" >
-	<com.baidu.mapapi.map.MapView
-		android:id="@+id/bmapView"
+
+
+	<RelativeLayout
+		android:id="@+id/content"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:clickable="true" />
-
+		android:layout_below="@+id/action"
+		android:layout_above="@+id/rg"
+		></RelativeLayout>
 
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:background="@drawable/nav_bg1"
+		android:id="@+id/action"
 		android:layout_height="80dp">
 		<ImageView
 			android:id="@+id/image_back"
@@ -30,14 +34,15 @@
 			android:layout_marginTop="30dp"
 			android:textColor="#ffffff"
 			/>
-		<ImageView
+		<CheckBox
 			android:id="@+id/image_list"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
+			android:button="@null"
 			android:layout_marginRight="15dp"
 			android:layout_marginTop="40dp"
-			android:background="@drawable/list_bg"
+			android:background="@drawable/check_map_selector"
 			/>
 		<ImageView
 			android:layout_width="wrap_content"
@@ -48,6 +53,7 @@
 			android:layout_marginRight="15dp"
 			android:layout_marginTop="40dp"
 			/>
+
 	</RelativeLayout>
 
 <!--	<android.support.v4.view.ViewPager
@@ -63,13 +69,14 @@
 
 	<RadioGroup
 		android:layout_width="match_parent"
-		android:id="@+id/rg1"
-		android:layout_alignParentBottom="true"
+		android:id="@+id/rg"
 		android:background="#000000"
 		android:gravity="center"
 		android:weightSum="3"
 		android:orientation="horizontal"
-		android:layout_height="75dp">
+		android:layout_height="75dp"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentStart="true">
 		<RadioButton
 			android:id="@+id/type_rb1"
 			android:layout_width="match_parent"
@@ -114,7 +121,6 @@
 			android:paddingLeft="30dp"
 			android:button="@null"
 			android:text="常去"
-			android:checked="true"
 			/>
 
 	</RadioGroup>

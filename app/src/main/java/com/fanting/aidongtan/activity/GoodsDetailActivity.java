@@ -1,6 +1,6 @@
 package com.fanting.aidongtan.activity;
 
-import android.os.Build;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,50 +8,35 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.fanting.aidongtan.R;
-import com.fanting.aidongtan.utils.DensityUtil;
 import com.lsjwzh.widget.recyclerviewpager.FragmentStatePagerAdapter;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import com.lsjwzh.widget.recyclerviewpager.TabLayoutSupport;
 
-import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 
 /**
- * Created by foryoung on 2017/12/5.
+ * Created by foryoung on 2017/12/27.
  */
 
-public class RentActivity extends AppCompatActivity {
+public class GoodsDetailActivity extends AppCompatActivity {
 
+    private String [] tags;
     protected RecyclerViewPager mRecyclerView;
     private FragmentsAdapter mAdapter;
-    private String[] rentType ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rent);
-        rentType =getResources().getStringArray(R.array.rent_type);
-       // setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setContentView(R.layout.activity_goods_detail);
+        tags =getResources().getStringArray(R.array.good_detail);
+        // setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         initViewPager();
         initTabLayout();
     }
 
-
-
-    private void initTabLayout() {
-        //给TabLayout增加Tab, 并关联ViewPager
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        TabLayoutSupport.setupWithViewPager(tabLayout, mRecyclerView, mAdapter);
-        setUpIndicatorWidth(tabLayout);
-    }
 
     protected void initViewPager() {
         mRecyclerView = (RecyclerViewPager) findViewById(R.id.viewpager);
@@ -73,6 +58,14 @@ public class RentActivity extends AppCompatActivity {
         });
 
     }
+
+    private void initTabLayout() {
+        //给TabLayout增加Tab, 并关联ViewPager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        //  setUpIndicatorWidth(tabLayout,20,20);
+        TabLayoutSupport.setupWithViewPager(tabLayout, mRecyclerView, mAdapter);
+    }
+
 
     class FragmentsAdapter extends FragmentStatePagerAdapter implements TabLayoutSupport.ViewPagerTabLayoutAdapter {
         LinkedHashMap<Integer, Fragment> mFragmentCache = new LinkedHashMap<>();
@@ -106,50 +99,18 @@ public class RentActivity extends AppCompatActivity {
         @Override
         public void onDestroyItem(int position, Fragment fragment) {
             // onDestroyItem
-                Object[] keys = mFragmentCache.keySet().toArray();
-                mFragmentCache.remove(keys[0]);
+            Object[] keys = mFragmentCache.keySet().toArray();
+            mFragmentCache.remove(keys[0]);
         }
 
         @Override
         public String getPageTitle(int position) {
-            return rentType[position];
+            return tags[position];
         }
 
         @Override
         public int getItemCount() {
-            return rentType.length;
-        }
-    }
-
-    private void setUpIndicatorWidth(TabLayout tabLayout ) {
-        Class<?> tabLayoutClass = tabLayout.getClass();
-        Field tabStrip = null;
-        try {
-            tabStrip = tabLayoutClass.getDeclaredField("mTabStrip");
-            tabStrip.setAccessible(true);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-
-        LinearLayout layout = null;
-        try {
-            if (tabStrip != null) {
-                layout = (LinearLayout) tabStrip.get(tabLayout);
-            }
-            for (int i = 0; i < layout.getChildCount(); i++) {
-                View child = layout.getChildAt(i);
-                child.setPadding(0, 0, 0, 0);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
-                params.gravity = Gravity.CENTER;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    params.setMarginStart(DensityUtil.dip2px(this, 20f));
-                    params.setMarginEnd(DensityUtil.dip2px(this, 20f));
-                }
-                child.setLayoutParams(params);
-                child.invalidate();
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            return tags.length;
         }
     }
 

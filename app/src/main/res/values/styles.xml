@@ -12,15 +12,39 @@
     <style name="TranslucentTheme" parent="AppTheme">
     </style>
 
-        <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
-            <item name="android:progressDrawable">@drawable/ratingbar_drawable</item>
-            <item name="android:minHeight">22dip</item>
-            <item name="android:maxHeight">22dip</item>
-        </style>
+    <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_drawable</item>
+        <item name="android:minHeight">22dip</item>
+        <item name="android:maxHeight">22dip</item>
+    </style>
 
     <style name="TextTile" >
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_tag">
+        <item name="android:textColor">#FF6AA6</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/bg_text_tag</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="text_go">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@drawable/bg_text_go</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="radio_filter">
+        <item name="android:drawableRight">@drawable/dropdown_selector</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@drawable/text_r_b_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
 
     </style>
 </resources>

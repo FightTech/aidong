@@ -50,6 +50,9 @@
         <activity android:name=".activity.RegisterSuccessActivity"/>
         <activity android:name=".activity.GymAdActivity"/>
         <activity android:name=".activity.GymDetailActivity"/>
+        <activity android:name=".activity.GoodsDetailActivity"/>
+        <activity android:name=".activity.VipCenterActivity"/>
+        <activity android:name=".activity.GymFavActivity"/>
     </application>
 
 </manifest>

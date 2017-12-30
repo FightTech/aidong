@@ -1,333 +1,185 @@
 package com.fanting.aidongtan.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.LocationClient;
-import com.baidu.mapapi.SDKInitializer;
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.MyLocationConfiguration;
-import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
-import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.model.LatLng;
 import com.fanting.aidongtan.R;
-import com.fanting.aidongtan.model.GymItem;
-import com.fanting.aidongtan.widgets.DepthPageTransformer;
-
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 /**
  * Created by foryoung on 2017/11/29.
  */
 
-public class GymMapActivity extends Activity implements BaiduMap.OnMarkerClickListener {
-    private ViewPager vp;
-    MapView mMapView = null;
-    BaiduMap mBaiduMap;
-    List<LatLng> latLngs;
+public class GymMapActivity extends FragmentActivity {
 
-    //是否第一次定位，如果是第一次定位的话要将自己的位置显示在地图 中间
-    private boolean isFirstLocation = true;
-    //定位相关
-    // 定位相关
-    LocationClient mLocClient;
-    private LocationMode mCurrentMode;
-    BitmapDescriptor mCurrentMarker;
-    private List<GymItem> gyms = new ArrayList<GymItem>();
-    private static final String TAG = GymMapActivity.class.getSimpleName();
+    private Fragment mapFragment, listFragment;
+    TextView tv;
+    @Bind(R.id.image_list)
+    CheckBox cv;
+    @Bind(R.id.rg)
+    RadioGroup rg;
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
-        mMapView.onDestroy();
+    @Bind(R.id.type_rb1)
+    RadioButton rb1;
+    @Bind(R.id.type_rb2)
+    RadioButton rb2;
+    @Bind(R.id.type_rb3)
+    RadioButton rb3;
+
+    private PopupWindow popupWindow;
+
+
+    @OnCheckedChanged({R.id.type_rb1,R.id.type_rb2,R.id.type_rb3})
+    public void toActivity(RadioButton rb){
+
+        if(rb.isChecked()){
+            switch (rb.getId()){
+                case R.id.type_rb1:
+                    startActivity(new Intent(GymMapActivity.this,VipCenterActivity.class));
+                    break;
+                case R.id.type_rb2:
+                    showPop();
+                    break;
+                case R.id.type_rb3:
+                    startActivity(new Intent(GymMapActivity.this,GymFavActivity.class));
+                    break;
+            }
+        }
+
+
+
     }
+
+    private void showPop() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupWindowView = inflater.inflate(R.layout.pop_friend_select, null);
+        popupWindow = new PopupWindow(popupWindowView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setOutsideTouchable(true);
+        ///  initWheelView(popupWindowView);
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                makeWindowLight();
+            }
+        });
+        popupWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        makeWindowDark();
+    }
+
+    /**
+     * 让屏幕变暗
+     */
+    private void makeWindowDark(){
+        Window window = getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.alpha = 0.2f;
+        window.setAttributes(lp);
+
+
+
+        WindowManager wm= (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics= new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(metrics);
+        popupWindow.setHeight(metrics.heightPixels);
+    }
+    /**
+     * 让屏幕变亮
+     */
+    private void makeWindowLight(){
+        Window window = getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.alpha = 1f;
+        window.setAttributes(lp);
+    }
+
+
+    @OnClick(R.id.image_list)
+    public void exchange(CheckBox view) {
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        if (!view.isChecked()){
+            hideFragments(transaction,listFragment);
+            showFragment(true);
+        }else{
+            hideFragments(transaction,mapFragment);
+            showFragment(false);
+        }
+    }
+
+    private void hideFragments(FragmentTransaction transaction, Fragment fragment) {
+        if (fragment != null) {
+            transaction.hide(fragment);
+        }
+        transaction.commit();
+    }
+
+    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_gymmap);
-        mMapView = (MapView) findViewById(R.id.bmapView);
-        //        vp = (ViewPager) findViewById(R.id.vp);
-        //设置ViewPager的适配器
-        gyms.add(new GymItem());
-        gyms.add(new GymItem());
-        gyms.add(new GymItem());
-        // final MyViewPagerAdapter adapter = new MyViewPagerAdapter(gyms, this);
-        //  vp.setPageTransformer(true, new DepthPageTransformer());
-        //初始化地图
-        initMap();
-        //定位
-        initLocation();
-        getLatLists();
-        setMarker(false);
+        ButterKnife.bind(this);
+        mFragmentManager = getSupportFragmentManager();
+        initView();
     }
 
-    private void gotoDetail() {
-        startActivity(new Intent(GymMapActivity.this, GymAdActivity.class));
+    private void initView() {
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+            }
+        });
+        showFragment(true);
     }
 
-    private void setMarker(boolean b) {
-        setMarker(b, null);
-    }
-
-
-    private void setMarker(boolean isClick, Marker marker) {
-
-        mBaiduMap.clear();
-
-        BitmapDescriptor bitmap;
-
-        if (latLngs != null && latLngs.size() != 0) {
-
-
-            for (LatLng point : latLngs) {
-                //构建Marker图标
-                if (isClick) {
-                    if (marker.getExtraInfo().getString("latlong").equals(point.toString())) {
-                        bitmap = BitmapDescriptorFactory
-                                .fromResource(R.drawable.store_marker_selected);
-                    } else {
-                        bitmap = BitmapDescriptorFactory
-                                .fromResource(R.drawable.store_marker);
-                    }
-                } else {
-                    bitmap = BitmapDescriptorFactory
-                            .fromResource(R.drawable.store_marker);
-                }
-
-
-                Bundle bundle = new Bundle();
-                bundle.putString("latlong", point.toString());
-                //构建MarkerOption，用于在地图上添加Marker
-                OverlayOptions option = new MarkerOptions()
-                        .position(point)
-                        .icon(bitmap);
-                //在地图上添加Marker，并显示
-                Marker myMarker = (Marker) (mBaiduMap.addOverlay(option));
-                myMarker.setExtraInfo(bundle);
+    private void showFragment(Boolean b){
+        //开启一个fragment事务
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        //隐藏所有的fragment
+        if(b){
+            if (mapFragment == null) {
+                mapFragment = new MapFragment();
+                transaction.add(R.id.content, mapFragment, "handle");
+            } else {
+                transaction.show(mapFragment);
+            }
+        }else{
+            if (listFragment == null) {
+                listFragment = new GymListFragment();
+                transaction.add(R.id.content, listFragment, "handle");
+            } else {
+                transaction.show(listFragment);
             }
         }
-    }
-
-    private void getLatLists() {
-        latLngs = new ArrayList<>();
-        latLngs.add(new LatLng(39.963175, 116.400244));
-        latLngs.add(new LatLng(39.951135, 116.409254));
-        latLngs.add(new LatLng(39.925125, 116.404274));
-        latLngs.add(new LatLng(39.997115, 116.406204));
-    }
-
-    private void initMap() {
-        mBaiduMap = mMapView.getMap();
-        mBaiduMap.setMyLocationEnabled(true);
-        mBaiduMap.setCompassEnable(false);
-        mBaiduMap.setOnMarkerClickListener(this);
-        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-    }
-
-    private LocationManager locationManager;
-    private String provider;
-
-    private void initLocation() {
-        mBaiduMap = mMapView.getMap();
-        // 设置可改变地图位置
-        mBaiduMap.setMyLocationEnabled(true);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        List<String> list = locationManager.getProviders(true);
-        if (list.contains(LocationManager.GPS_PROVIDER)) {
-            provider = LocationManager.GPS_PROVIDER;
-        } else if (list.contains(LocationManager.NETWORK_PROVIDER)) {
-            provider = LocationManager.NETWORK_PROVIDER;
-
-        } else {
-            Toast.makeText(this, "当前不能提供位置信息", Toast.LENGTH_LONG).show();
-            return;
-        }
 
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-            Location location = locationManager.getLastKnownLocation(provider);
-            if (location != null) {
-                navigateTo(location);
-            }
-        }
-        locationManager.requestLocationUpdates(provider, 5000, 1,
-                locationListener);
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
-        mMapView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
-        mMapView.onPause();
-    }
-
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        setMarker(true, marker);
-        gotoDetail();
-        Log.i("marker", marker.toString());
-        return false;
-    }
-
-
-    public class MyViewPagerAdapter extends PagerAdapter {
-        private List<GymItem> items;
-        private Context context;
-
-        //有参构造
-        public MyViewPagerAdapter(List<GymItem> items, Context context) {
-            super();
-            this.items = items;
-            this.context = context;
-        }
-
-        //获得长度
-        @Override
-        public int getCount() {
-
-            return items.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
-
-            return arg0 == arg1;
-        }
-
-        //展示的view
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            //获得展示的view
-
-            ViewGroup view = (ViewGroup) View.inflate(getApplicationContext(), R.layout.layout_flip_map, null);
-            ImageView image_logo = (ImageView) view.findViewById(R.id.image_logo);
-            image_logo.setImageBitmap(items.get(position).getLogo());
-
-            TextView tvName = (TextView) view.findViewById(R.id.tv_name);
-            TextView tvDistance = (TextView) view.findViewById(R.id.tv_distance);
-            TextView tvSeat = (TextView) view.findViewById(R.id.tv_seat);
-
-            //添加到容器
-            container.addView(view);
-            //返回显示的view
-            return view;
-        }
-
-        //销毁view
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            //从容器中移除view
-            container.removeView((View) object);
-        }
-
-        private View mCurrentView;
-
-        @Override
-        public void setPrimaryItem(ViewGroup container, int position, Object object) {
-            mCurrentView = (View) object;
-        }
-
-        public View getPrimaryItem() {
-            return mCurrentView;
-        }
-    }
-
-
-    LocationListener locationListener = new LocationListener() {
-
-        @Override
-        public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onProviderEnabled(String arg0) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onProviderDisabled(String arg0) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onLocationChanged(Location arg0) {
-            // TODO Auto-generated method stub
-            // 位置改变则重新定位并显示地图
-            navigateTo(arg0);
-        }
-    };
-
-    private void navigateTo(Location location) {
-        // 按照经纬度确定地图位置
-        if (isFirstLocation) {
-            LatLng ll = new LatLng(location.getLatitude(),
-                    location.getLongitude());
-            MapStatusUpdate update = MapStatusUpdateFactory.newLatLng(ll);
-            // 移动到某经纬度
-            mBaiduMap.animateMapStatus(update);
-            update = MapStatusUpdateFactory.zoomTo(12f);
-            // 放大
-            mBaiduMap.animateMapStatus(update);
-
-            isFirstLocation = false;
-        }
-
-        MyLocationData locData = new MyLocationData.Builder().latitude(location.getLatitude())
-                .longitude(location.getLongitude()).build();
-
-        // 设置定位数据
-        mBaiduMap.setMyLocationData(locData);
-
-        // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
-        mCurrentMarker = BitmapDescriptorFactory
-                .fromResource(R.drawable.my_marker);
-        MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
-        mBaiduMap.setMyLocationConfiguration(config);
-
-
+        transaction.commit();
     }
 
 
