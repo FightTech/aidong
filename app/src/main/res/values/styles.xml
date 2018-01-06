@@ -9,7 +9,7 @@
     </style>
 
     //valuse
-    <style name="TranslucentTheme" parent="AppTheme">
+    <style name="TranslucentTheme" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
     </style>
 
     <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
@@ -46,5 +46,18 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
 
+    </style>
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="MyTabLayoutTextAppearanceInverse" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
     </style>
 </resources>

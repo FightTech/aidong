@@ -74,7 +74,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/cardview_dark_background"
+        android:background="@color/darkgray"
         android:layout_height="1dp"/>
     <TextView
         android:id="@+id/like"

@@ -36,7 +36,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="vdq1EOZDpx3Lm17ayPdd4IZyIV2NkAjd" />
-        <activity android:name="com.fanting.aidongtan.activity.MainActivity">
+        <activity android:name="com.fanting.aidongtan.activity.v1.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
