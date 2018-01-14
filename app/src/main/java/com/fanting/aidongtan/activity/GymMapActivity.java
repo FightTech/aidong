@@ -1,151 +1,186 @@
 package com.fanting.aidongtan.activity;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.baidu.mapapi.SDKInitializer;
-import com.baidu.mapapi.map.MapView;
 import com.fanting.aidongtan.R;
-import com.fanting.aidongtan.model.GymItem;
-import com.fanting.aidongtan.widgets.DepthPageTransformer;
-
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 /**
  * Created by foryoung on 2017/11/29.
  */
 
-public class GymMapActivity extends Activity {
-    private ViewPager vp;
-    MapView mMapView = null;
-    private List<GymItem> gyms = new ArrayList<GymItem>();
-    private static final String TAG = GymMapActivity.class.getSimpleName();
+public class GymMapActivity extends FragmentActivity {
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
-        mMapView.onDestroy();
+    private Fragment mapFragment, listFragment;
+    TextView tv;
+    @Bind(R.id.image_list)
+    CheckBox cv;
+    @Bind(R.id.rg)
+    RadioGroup rg;
+
+    @Bind(R.id.type_rb1)
+    RadioButton rb1;
+    @Bind(R.id.type_rb2)
+    RadioButton rb2;
+    @Bind(R.id.type_rb3)
+    RadioButton rb3;
+
+    private PopupWindow popupWindow;
+
+
+    @OnCheckedChanged({R.id.type_rb1,R.id.type_rb2,R.id.type_rb3})
+    public void toActivity(RadioButton rb){
+
+        if(rb.isChecked()){
+            switch (rb.getId()){
+                case R.id.type_rb1:
+                    startActivity(new Intent(GymMapActivity.this,VipCenterActivity.class));
+                    break;
+                case R.id.type_rb2:
+                    showPop();
+                    break;
+                case R.id.type_rb3:
+                    startActivity(new Intent(GymMapActivity.this,GymFavActivity.class));
+                    break;
+            }
+        }
+
+
+
     }
+
+    private void showPop() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupWindowView = inflater.inflate(R.layout.pop_friend_select, null);
+        popupWindow = new PopupWindow(popupWindowView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setOutsideTouchable(true);
+        ///  initWheelView(popupWindowView);
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                makeWindowLight();
+            }
+        });
+        popupWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        makeWindowDark();
+    }
+
+    /**
+     * 让屏幕变暗
+     */
+    private void makeWindowDark(){
+        Window window = getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.alpha = 0.2f;
+        window.setAttributes(lp);
+
+
+
+        WindowManager wm= (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics= new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(metrics);
+        popupWindow.setHeight(metrics.heightPixels);
+    }
+    /**
+     * 让屏幕变亮
+     */
+    private void makeWindowLight(){
+        Window window = getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.alpha = 1f;
+        window.setAttributes(lp);
+    }
+
+
+    @OnClick(R.id.image_list)
+    public void exchange(CheckBox view) {
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        if (!view.isChecked()){
+            hideFragments(transaction,listFragment);
+            showFragment(true);
+        }else{
+            hideFragments(transaction,mapFragment);
+            showFragment(false);
+        }
+    }
+
+    private void hideFragments(FragmentTransaction transaction, Fragment fragment) {
+        if (fragment != null) {
+            transaction.hide(fragment);
+        }
+        transaction.commit();
+    }
+
+    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_gymmap);
-        mMapView = (MapView) findViewById(R.id.bmapView);
-        vp = (ViewPager) findViewById(R.id.vp);
-        //设置ViewPager的适配器
-        gyms.add(new GymItem());
-        gyms.add(new GymItem());
-        gyms.add(new GymItem());
-        final MyViewPagerAdapter adapter = new MyViewPagerAdapter(gyms, this);
-        vp.setPageTransformer(true, new DepthPageTransformer());
+        ButterKnife.bind(this);
+        mFragmentManager = getSupportFragmentManager();
+        initView();
+    }
 
-        vp.setAdapter(adapter);
-        vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+    private void initView() {
 
-
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
             }
         });
+        showFragment(true);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
-        mMapView.onResume();
+    private void showFragment(Boolean b){
+        //开启一个fragment事务
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        //隐藏所有的fragment
+        if(b){
+            if (mapFragment == null) {
+                mapFragment = new MapFragment();
+                transaction.add(R.id.content, mapFragment, "handle");
+            } else {
+                transaction.show(mapFragment);
+            }
+        }else{
+            if (listFragment == null) {
+                listFragment = new GymListFragment();
+                transaction.add(R.id.content, listFragment, "handle");
+            } else {
+                transaction.show(listFragment);
+            }
+        }
+
+
+        transaction.commit();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
-        mMapView.onPause();
-    }
 
-
-    public class MyViewPagerAdapter extends PagerAdapter {
-        private List<GymItem> items;
-        private Context context;
-
-        //有参构造
-        public MyViewPagerAdapter(List<GymItem> items, Context context) {
-            super();
-            this.items = items;
-            this.context = context;
-        }
-
-        //获得长度
-        @Override
-        public int getCount() {
-
-            return items.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
-
-            return arg0 == arg1;
-        }
-
-        //展示的view
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            //获得展示的view
-
-            ViewGroup view = (ViewGroup) View.inflate(getApplicationContext(), R.layout.layout_flip_map, null);
-            ImageView image_logo = (ImageView) view.findViewById(R.id.image_logo);
-            image_logo.setImageBitmap(items.get(position).getLogo());
-
-            TextView tvName = (TextView) view.findViewById(R.id.tv_name);
-            TextView tvDistance = (TextView) view.findViewById(R.id.tv_distance);
-            TextView tvSeat = (TextView) view.findViewById(R.id.tv_seat);
-
-            //添加到容器
-            container.addView(view);
-            //返回显示的view
-            return view;
-        }
-
-        //销毁view
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            //从容器中移除view
-            container.removeView((View) object);
-        }
-
-        private View mCurrentView;
-
-        @Override
-        public void setPrimaryItem(ViewGroup container, int position, Object object) {
-            mCurrentView = (View) object;
-        }
-
-        public View getPrimaryItem() {
-            return mCurrentView;
-        }
-    }
 }

@@ -43,8 +43,6 @@ public class SportFragment extends Fragment implements OnClickListener {
     public void toActivite(View view){
         Intent intent = new Intent();
 
-
-
         switch (view.getId()){
             case R.id.tv_rent:
                 intent.setClass(getActivity(),RentActivity.class);

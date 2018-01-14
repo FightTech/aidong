@@ -17,6 +17,8 @@
 package com.fanting.aidongtan.activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,7 +31,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,15 +44,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static android.content.ContentValues.TAG;
+
 public class RentEquipFragment extends Fragment {
+
     private int mIndex;
+    private static int type ;
+    private static final int  TYPE_SINGLE=0;
+    private static final int  TYPE_COMBINE=1;
+    private static final int  TYPE_SUIT=2;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView rv = (RecyclerView) inflater.inflate(
                 R.layout.fragment_rent_equip, container, false);
-
+        setType();
         setupRecyclerView(rv);
 //        if (savedInstanceState == null) {
 //            mIndex = getArguments().getInt("index");
@@ -59,7 +70,23 @@ public class RentEquipFragment extends Fragment {
 //            ((AppCompatActivity) getActivity()).getSupportActionBar()
 //                    .setTitle("from savedInstanceState:" + mIndex);
 //        }
+
+
+//        Point p = new Point();
+//        WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+//        wm.getDefaultDisplay().getSize(p);
+//        //之所以高度是MATCH_PARENT 是因为图片会根据高度居中显示，否则会在屏幕上方
+//        rv.setLayoutParams(new LinearLayout.LayoutParams(p.x, ViewGroup.LayoutParams.MATCH_PARENT));
+
+
         return rv;
+    }
+
+    private void setType() {
+        if (getArguments()!=null){
+            type = getArguments().getInt("type");
+            Log.e("test", "setType: "+ type);
+        }
     }
 
     @Override
@@ -70,10 +97,27 @@ public class RentEquipFragment extends Fragment {
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),
-                getRandomSublist(Cheeses.sCheeseStrings, 30)));
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        SimpleStringRecyclerViewAdapter adapter = new SimpleStringRecyclerViewAdapter(getActivity(),
+                getRandomSublist(Cheeses.sCheeseStrings, 30));
+        recyclerView.setAdapter(adapter);
+        if(type==0){
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        }else{
+            recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+        }
+
+        adapter.setOnItemClickListener(new SimpleStringRecyclerViewAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, String data) {
+                goGoodsDetail();
+
+            }
+        });
+
+    }
+
+    private void goGoodsDetail() {
+        startActivity(new Intent(getActivity(),GoodsDetailActivity.class));
     }
 
     private List<String> getRandomSublist(String[] array, int amount) {
@@ -86,11 +130,30 @@ public class RentEquipFragment extends Fragment {
     }
 
     public static class SimpleStringRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder> {
+            extends RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder> implements View.OnClickListener{
 
         private final TypedValue mTypedValue = new TypedValue();
         private int mBackground;
         private List<String> mValues;
+
+
+        public static interface OnRecyclerViewItemClickListener {
+            void onItemClick(View view , String data);
+        }
+
+        private OnRecyclerViewItemClickListener mOnItemClickListener = null;
+        public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
+            this.mOnItemClickListener = listener;
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            if (mOnItemClickListener != null) {
+                //注意这里使用getTag方法获取数据
+                mOnItemClickListener.onItemClick(v,(String)v.getTag());
+            }
+        }
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
             public String mBoundString;
@@ -122,15 +185,31 @@ public class RentEquipFragment extends Fragment {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.equip_list_item, parent, false);
+            View view;
+            if(type==0){
+                 view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.equip_list_item, parent, false);
+            }else{
+                 view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.equip_list_item, parent, false);
+            }
+
             view.setBackgroundResource(mBackground);
+            view.setOnClickListener(this);
             return new ViewHolder(view);
         }
+
+
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mBoundString = mValues.get(position);
+            if(type==0){
+                holder.name.setText("单品");
+            }else {
+                holder.name.setText("家庭");
+            }
+
             //   holder.mTextView.setText(mValues.get(position));
 
 //            holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -151,4 +230,6 @@ public class RentEquipFragment extends Fragment {
             return mValues.size();
         }
     }
+
+
 }

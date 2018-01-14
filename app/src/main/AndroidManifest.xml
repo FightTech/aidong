@@ -11,7 +11,10 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
+    <!-- 两种provider的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 仅网络定位的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -34,7 +37,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="vdq1EOZDpx3Lm17ayPdd4IZyIV2NkAjd" />
-        <activity android:name="com.fanting.aidongtan.activity.MainActivity">
+        <activity android:name="com.fanting.aidongtan.activity.v1.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,6 +49,7 @@
         <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.RegisterSuccessActivity"/>
+
         <activity android:name=".activity.HealthDataActivity"/>
         <activity android:name=".activity.SportRecordActivity"/>
         //图片裁剪
@@ -54,6 +58,11 @@
         <activity android:name=".activity.CoachDetialActivity"/>
         <activity android:name=".activity.SportWikiActivity"/>
         <activity android:name=".activity.SearchActivity"/>
+        <activity android:name=".activity.GymAdActivity"/>
+        <activity android:name=".activity.GymDetailActivity"/>
+        <activity android:name=".activity.GoodsDetailActivity"/>
+        <activity android:name=".activity.VipCenterActivity"/>
+        <activity android:name=".activity.GymFavActivity"/>
     </application>
 
 </manifest>

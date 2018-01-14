@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/im_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card"
+        android:layout_margin="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="达人互娱健身房"
+        android:textColor="#333333"
+        android:layout_alignTop="@+id/im_card"
+        android:layout_alignStart="@+id/tv_intro" />
+
+    <TextView
+        android:id="@+id/tv_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/side_1"
+        android:text="0.4km  朝阳区东三环中路192..."
+        android:layout_alignBottom="@+id/im_card"
+        android:layout_toEndOf="@+id/im_card" />
+
+    <TextView
+        android:id="@+id/tv1"
+        style="@style/text_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="游泳馆"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tv_name"
+        android:layout_alignStart="@+id/tv_name" />
+    <TextView
+        android:id="@+id/tv2"
+        style="@style/text_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="游泳馆"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tv1"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tv_name"
+         />
+    <TextView
+        android:id="@+id/tv3"
+        style="@style/text_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="游泳馆"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tv2"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tv_name"
+         />
+
+    <TextView
+        android:id="@+id/tv_go"
+        android:layout_marginRight="10dp"
+        style="@style/text_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:text="去健身" />
+
+</RelativeLayout>

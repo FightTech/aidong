@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/action"
+        android:layout_width="match_parent"
+        android:background="@drawable/nav_bg"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_bg"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/image_back" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/message"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/imageView4" />
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            app:elevation="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="70dp"
+            android:background="#00000000"
+            >
+
+            <!--        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways" />-->
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabGravity="fill"
+                android:layout_marginBottom="2dp"
+                app:tabTextColor="@color/white"
+                android:background="#00000000"
+                app:tabIndicatorColor="@color/white"
+                app:tabSelectedTextColor="@color/white" />
+        </android.support.design.widget.AppBarLayout>
+
+    </RelativeLayout>
+
+    <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:rvp_singlePageFling="false"
+        app:rvp_triggerOffset="0"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_below="@+id/action"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
