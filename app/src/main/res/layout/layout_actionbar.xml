@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         >
-        <ImageView
-            android:id="@+id/iv_acitonbar_left"
+        <Button
+            android:id="@+id/btn_acitonbar_left"
             android:layout_width="12dp"
             android:layout_height="22dp"
             android:layout_marginLeft="20dp"
@@ -22,15 +22,13 @@
             android:id="@+id/tv_actionbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:layout_marginTop="30dp"
             android:layout_centerInParent="true"
-            android:text="12345"
-            />
+            android:layout_marginTop="30dp"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/iv_acitonbar_right"
+        <Button
+            android:id="@+id/btn_acitonbar_right"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"

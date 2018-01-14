@@ -1,6 +1,7 @@
 package com.fanting.aidongtan.holder;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.fanting.aidongtan.R;

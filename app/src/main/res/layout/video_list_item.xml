@@ -1,45 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:background="#000000"
-    android:orientation="vertical">
-
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    >
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/header5"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="兜来A梦"
+        android:layout_toRightOf="@id/iv_head"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_name"
+        android:layout_centerVertical="true"
+        android:background="@mipmap/nv"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="刚刚"
+        android:layout_marginRight="10dp"
+        />
+</RelativeLayout>
+<TextView
+    android:id="@+id/tv_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:text="坚持在爱动弹里运动！生活变得更美好！"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
+    />
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
         <com.waynell.videolist.widget.TextureVideoView
             android:id="@+id/video_view"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             app:scaleType="fitCenter"/>
 
         <ImageView
             android:id="@+id/video_cover"
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
-            android:layout_height="300dp"/>
+            android:layout_height="200dp"/>
 
-、        <com.mikhaellopez.circularprogressbar.CircularProgressBar
-            android:id="@+id/video_progress"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:visibility="invisible"
-            app:cpb_background_progressbar_color="#ffffff"
-            app:cpb_background_progressbar_width="10dp"
-            app:cpb_progressbar_color="@color/colorPrimary"
-            app:cpb_progressbar_width="10dp" />
+       <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/video_progress"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        app:cpb_background_progressbar_color="#ffffff"
+        app:cpb_background_progressbar_width="10dp"
+        app:cpb_progressbar_color="@color/colorPrimary"
+        app:cpb_progressbar_width="10dp" />
     </FrameLayout>
 
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/gray_ec"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="20dp"
+    />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    >
     <TextView
-        android:id="@+id/video_text"
+        android:id="@+id/tv_dianzan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textSize="16sp"/>
+        android:text="168"
+        android:drawableLeft="@mipmap/zan"
+        android:layout_marginLeft="20dp"
+        android:drawablePadding="5dp"
+        android:layout_centerVertical="true"
+        />
+    <TextView
+        android:id="@+id/pinglun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="168"
+        android:drawableLeft="@mipmap/pinglun"
+        android:layout_toRightOf="@id/tv_dianzan"
+        android:layout_marginLeft="30dp"
+        android:layout_centerVertical="true"
+        android:drawablePadding="5dp"
+        />
+    <TextView
+        android:id="@+id/tv_fabiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/pinglun"
+        android:drawableLeft="@mipmap/zhuanfa"
+        android:text="168"
+        android:layout_marginLeft="30dp"
+        android:layout_centerVertical="true"
+        android:drawablePadding="5dp"
+        />
 
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:text="+关注"
+        android:textColor="@color/text_red"
+        android:background="@drawable/shape_bg_red_line"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:drawablePadding="5dp"
+        />
 </RelativeLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="15dp"
+    android:background="@color/gray_ec"/>
+</LinearLayout>

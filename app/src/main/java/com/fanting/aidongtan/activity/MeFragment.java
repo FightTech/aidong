@@ -13,12 +13,16 @@ import com.fanting.aidongtan.R;
 public class MeFragment extends Fragment implements View.OnClickListener {
 
 	private TextView textView;
+	private TextView tv_wallet;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_me, null);
 		textView=view.findViewById(R.id.textView);
 		textView.setOnClickListener(this);
+
+		tv_wallet=view.findViewById(R.id.tv_wallet);
+		tv_wallet.setOnClickListener(this);
 		return view;
 	}
 
@@ -32,6 +36,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 		/*	case R.id.tv_health:
 				//startActivity(new Intent(getActivity(),HealthDataActivity.class));
 				break;*/
+			case R.id.tv_wallet:
+				startActivity(new Intent(getActivity(),WalletActivity.class));
+				break;
 
 		}
 	}

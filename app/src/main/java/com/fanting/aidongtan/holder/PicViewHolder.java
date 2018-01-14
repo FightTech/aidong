@@ -1,6 +1,7 @@
 package com.fanting.aidongtan.holder;
 
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,11 +16,13 @@ import butterknife.Bind;
  */
 public class PicViewHolder extends BaseViewHolder<PicItem> {
 
-    @Bind(R.id.pic_image_view)
-    ImageView mImageView;
+    @Bind(R.id.iv_pic)
+    ImageView iv_pic;
 
-    @Bind(R.id.pic_text_view)
+    @Bind(R.id.tv_content)
     TextView mTextView;
+
+
 
     public PicViewHolder(View itemView) {
         super(itemView);
@@ -29,8 +32,8 @@ public class PicViewHolder extends BaseViewHolder<PicItem> {
     public void onBind(int position, PicItem iItem) {
         Glide.with(itemView.getContext())
                 .load(iItem.getCoverUrl())
-                .into(mImageView);
+                .into(iv_pic);
 
-        mTextView.setText(String.format("PicItem %s", position));
+       // mTextView.setText(String.format("PicItem %s", position));
     }
 }

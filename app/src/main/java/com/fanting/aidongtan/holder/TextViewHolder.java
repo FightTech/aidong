@@ -13,8 +13,8 @@ import butterknife.Bind;
  */
 public class TextViewHolder extends BaseViewHolder<TextItem> {
 
-    @Bind(R.id.text_view)
-    TextView mTextView;
+    @Bind(R.id.tv_content)
+    TextView tv_content;
 
     public TextViewHolder(View itemView) {
         super(itemView);
@@ -22,6 +22,6 @@ public class TextViewHolder extends BaseViewHolder<TextItem> {
 
     @Override
     public void onBind(int position, TextItem iItem) {
-        mTextView.setText(String.format("%s - %s", iItem.getText(), position));
+        //tv_content.setText();
     }
 }

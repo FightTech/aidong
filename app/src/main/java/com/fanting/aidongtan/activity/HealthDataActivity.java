@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ import com.fanting.aidongtan.listener.RecycleViewItemClickListener;
 
 public class HealthDataActivity extends BaseActivity implements View.OnClickListener, RecycleViewItemClickListener {
     private RecyclerView rv_healthdata;
-    private ImageView iv_acitonbar_left, iv_acitonbar_right;
+    private Button btn_acitonbar_left, btn_acitonbar_right;
     private TextView tv_actionbar_title;
 
     @Override
@@ -27,10 +28,10 @@ public class HealthDataActivity extends BaseActivity implements View.OnClickList
         super.onCreate(arg0);
         setContentView(R.layout.activity_healthdata);
 
-        iv_acitonbar_left = findViewById(R.id.iv_acitonbar_left);
-        iv_acitonbar_right = findViewById(R.id.iv_acitonbar_right);
+        btn_acitonbar_left = findViewById(R.id.btn_acitonbar_left);
+        btn_acitonbar_right = findViewById(R.id.btn_acitonbar_right);
         tv_actionbar_title = findViewById(R.id.tv_actionbar_title);
-        iv_acitonbar_left.setOnClickListener(this);
+        btn_acitonbar_left.setOnClickListener(this);
         tv_actionbar_title.setText("健康数据");
 
         rv_healthdata = findViewById(R.id.rv_healthdata);
@@ -43,7 +44,7 @@ public class HealthDataActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_acitonbar_left:
+            case R.id.btn_acitonbar_left:
                 finish();
                 break;
         }

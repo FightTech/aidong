@@ -1,0 +1,126 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    >
+
+    <ImageView
+        android:id="@+id/avtar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/avtar"
+         />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/avtar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="兜来A梦" />
+
+    <ImageView
+        android:id="@+id/image_sex"
+        android:layout_marginTop="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/name"
+        android:layout_marginLeft="10dp"
+        app:srcCompat="@drawable/femal" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="刚刚"
+        android:layout_marginTop="33dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp" />
+
+    <TextView
+        android:id="@+id/topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:text="坚持在爱动弹里运动！生活变得更美好！"
+        android:textSize="20sp"
+        android:layout_below="@+id/avtar"
+        android:layout_alignStart="@+id/avtar" />
+
+
+    <ViewStub
+        android:layout_below="@id/topic"
+        android:id="@+id/viewsutb_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout="@layout/viewsutb_video_layout"/>
+    <ViewStub
+        android:layout_below="@id/topic"
+        android:id="@+id/viewsutb_image"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout="@layout/viewsutb_image_layout"/>
+    
+    <View
+        android:layout_width="match_parent"
+        android:id="@+id/line"
+        android:layout_below="@id/viewsutb_image"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/darkgray"
+        android:layout_height="1dp"/>
+    <TextView
+        android:id="@+id/like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/like"
+        android:drawablePadding="5dp"
+        android:layout_below="@+id/line"
+        android:layout_margin="15dp"
+        android:text="178"
+        />
+
+    <TextView
+        android:id="@+id/commit"
+        android:layout_toRightOf="@+id/like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/commit"
+        android:drawablePadding="5dp"
+        android:layout_below="@+id/line"
+        android:layout_margin="15dp"
+        android:text="178"
+        />
+
+    <TextView
+        android:layout_toRightOf="@+id/commit"
+        android:id="@+id/forword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/forword"
+        android:drawablePadding="5dp"
+        android:layout_below="@+id/line"
+        android:layout_margin="15dp"
+        android:text="178"
+        />
+
+    <Button
+        android:id="@+id/follow"
+        android:layout_width="45dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/line"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/follow"
+         />
+
+
+</RelativeLayout>

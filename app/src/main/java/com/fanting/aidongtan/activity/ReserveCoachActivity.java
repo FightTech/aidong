@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -40,10 +41,10 @@ import butterknife.OnClick;
 public class ReserveCoachActivity extends BaseActivity implements View.OnClickListener, RecycleViewItemClickListener {
     @Bind(R.id.rv_coach)
     RecyclerView rv_coach;
-    @Bind(R.id.iv_acitonbar_left)
-    ImageView iv_acitonbar_left;
-    @Bind(R.id.iv_acitonbar_right)
-    ImageView iv_acitonbar_right;
+    @Bind(R.id.btn_acitonbar_left)
+    Button btn_acitonbar_left;
+    @Bind(R.id.btn_acitonbar_right)
+    Button btn_acitonbar_right;
     @Bind(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
     @Bind(R.id.tv_filter)
@@ -61,7 +62,7 @@ public class ReserveCoachActivity extends BaseActivity implements View.OnClickLi
         super.onCreate(arg0);
         setContentView(R.layout.activity_reservecoach);
         ButterKnife.bind(this);
-        iv_acitonbar_left.setOnClickListener(this);
+        btn_acitonbar_left.setOnClickListener(this);
         tv_actionbar_title.setText("私教预约");
 
         rv_coach.setLayoutManager(new LinearLayoutManager(this));
@@ -77,7 +78,7 @@ public class ReserveCoachActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_acitonbar_left:
+            case R.id.btn_acitonbar_left:
                 finish();
                 break;
             case R.id.tv_filter:

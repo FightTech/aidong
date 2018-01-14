@@ -37,9 +37,6 @@ public class VideoViewHolder extends BaseViewHolder<VideoItem>
     @Bind(R.id.video_view)
     public TextureVideoView videoView;
 
-    @Bind(R.id.video_text)
-    public TextView videoTitle;
-
     @Bind(R.id.video_cover)
     public ImageView videoCover;
 
@@ -97,7 +94,6 @@ public class VideoViewHolder extends BaseViewHolder<VideoItem>
     public void onBind(int position, VideoItem item) {
         reset();
 
-        videoTitle.setText(String.format("Video Position %s", position));
         progressTarget.setModel(item.getVideoUrl());
 
         // load video cover photo

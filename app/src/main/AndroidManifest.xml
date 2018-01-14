@@ -63,6 +63,8 @@
         <activity android:name=".activity.GoodsDetailActivity"/>
         <activity android:name=".activity.VipCenterActivity"/>
         <activity android:name=".activity.GymFavActivity"/>
+        <activity android:name=".activity.PublishActivity"/>
+        <activity android:name=".activity.WalletActivity"/>
     </application>
 
 </manifest>
