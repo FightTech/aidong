@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fanting.aidongtan.AppContext;
@@ -21,6 +22,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 
 	private ImageView btnSport, btnPlay, btnLook,btnMe;
 	private FragmentManager mFragmentManager;
+
 
 	private boolean isHomePage;
 

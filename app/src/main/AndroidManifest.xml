@@ -24,6 +24,7 @@
 
 
     <application
+        android:name=".AppContext"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -45,6 +46,14 @@
         <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.RegisterSuccessActivity"/>
+        <activity android:name=".activity.HealthDataActivity"/>
+        <activity android:name=".activity.SportRecordActivity"/>
+        //图片裁剪
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        <activity android:name=".activity.ReserveCoachActivity"/>
+        <activity android:name=".activity.CoachDetialActivity"/>
+        <activity android:name=".activity.SportWikiActivity"/>
+        <activity android:name=".activity.SearchActivity"/>
     </application>
 
 </manifest>

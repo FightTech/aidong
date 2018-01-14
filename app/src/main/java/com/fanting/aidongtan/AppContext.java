@@ -4,9 +4,11 @@ package com.fanting.aidongtan;
 import android.app.Application;
 import android.content.Context;
 
+import com.fanting.aidongtan.constant.MyConstant;
 import com.fanting.aidongtan.handler.CrashHandler;
 import com.fanting.aidongtan.utils.AppManager;
 
+import java.io.File;
 import java.util.Date;
 
 
@@ -28,12 +30,14 @@ public class AppContext extends Application {
 	public void onCreate() {
 		super.onCreate();
 		instance = this;
-		appManager = AppManager.getAppManager();
+		/*appManager = AppManager.getAppManager();
 		CrashHandler crashHandler = CrashHandler.getInstance();
 		// 注册crashHandler
 		crashHandler.init(getApplicationContext());
 		// 发送以前没发送的报告(可选)
-		crashHandler.sendPreviousReportsToServer();
+		crashHandler.sendPreviousReportsToServer();*/
+		//初始化缓存路径
+		initCachePath();
 	}
 
 	public static Context getContext() {
@@ -91,5 +95,17 @@ public class AppContext extends Application {
 
 	public static void get(){
 
+	}
+
+	//创建缓存路径
+	private void initCachePath() {
+		File photoDirs = new File(MyConstant.PHOTO_PATH);
+		if(!photoDirs.exists()){
+			photoDirs.mkdirs();
+		}
+		File DownlaodDirs = new File(MyConstant.DOWNLODA_PATH);
+		if(!DownlaodDirs.exists()){
+			DownlaodDirs.mkdirs();
+		}
 	}
 }

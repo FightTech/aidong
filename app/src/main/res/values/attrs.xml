@@ -3,27 +3,55 @@
 
     <!--图片阅览属性-->
     <declare-styleable name="ImagePreview">
-        <attr name="imageSingleSize" format="dimension"/>
-        <attr name="imageSingleRatio" format="float"/>
-        <attr name="imageGridSpacing" format="dimension"/>
-        <attr name="imageMaxSize" format="integer"/>
+        <attr name="imageSingleSize" format="dimension" />
+        <attr name="imageSingleRatio" format="float" />
+        <attr name="imageGridSpacing" format="dimension" />
+        <attr name="imageMaxSize" format="integer" />
         <attr name="imageDisplayMode" format="enum">
-            <enum name="fill" value="0"/>
-            <enum name="grid" value="1"/>
+            <enum name="fill" value="0" />
+            <enum name="grid" value="1" />
         </attr>
     </declare-styleable>
 
     <!--Banner无限轮播属性-->
     <declare-styleable name="BannerView">
-        <attr name="bannerPageMargin" format="dimension"/>
-        <attr name="bannerPagePercent" format="float"/>
-        <attr name="bannerPageScale" format="float"/>
-        <attr name="bannerPageAlpha" format="float"/>
-        <attr name="bannerScrollDuration" format="integer"/>
-        <attr name="bannerAnimDuration" format="integer"/>
-        <attr name="bannerAnimScroll" format="boolean"/>
-        <attr name="bannerAutoScroll" format="boolean"/>
+        <attr name="bannerPageMargin" format="dimension" />
+        <attr name="bannerPagePercent" format="float" />
+        <attr name="bannerPageScale" format="float" />
+        <attr name="bannerPageAlpha" format="float" />
+        <attr name="bannerScrollDuration" format="integer" />
+        <attr name="bannerAnimDuration" format="integer" />
+        <attr name="bannerAnimScroll" format="boolean" />
+        <attr name="bannerAutoScroll" format="boolean" />
+    </declare-styleable>
+    <!--  WheelView-->
+    <declare-styleable name="WheelView">
+        <attr name="itemVisibleNum" format="integer" />
+
+        <attr name="textColorOuter" format="color" />
+        <attr name="textSizeOuter" format="dimension" />
+        <attr name="textColorCenter" format="color" />
+        <attr name="textSizeCenter" format="dimension" />
+
+        <attr name="lineColor" format="color" />
+
+        <attr name="isLoop" format="boolean" />
+        <attr name="lineSpaceingDimens" format="dimension" />
+
+        <attr name="wheelGravity" format="enum">
+            <enum name="left" value="234" />
+            <enum name="center" value="354" />
+            <enum name="right" value="894" />
+        </attr>
     </declare-styleable>
 
-
+    <declare-styleable name="RangeSeekBar">
+        <attr name="max" format="float" />
+        <attr name="min" format="float" />
+        <attr name="reserve" format="float" />
+        <attr name="cells" format="integer" />
+        <attr name="lineColorSelected" format="color" />
+        <attr name="lineColorEdge" format="color" />
+        <attr name="seekBarResId" format="reference" />
+    </declare-styleable>
 </resources>

@@ -53,8 +53,12 @@ public class SportFragment extends Fragment implements OnClickListener {
             case R.id.tv_video:
                 break;
             case R.id.tv_coach:
+                intent.setClass(getActivity(),ReserveCoachActivity.class);
+                getActivity().startActivity(intent);
                 break;
             case R.id.tv_wiki:
+                intent.setClass(getActivity(),SportWikiActivity.class);
+                getActivity().startActivity(intent);
                 break;
 
         }

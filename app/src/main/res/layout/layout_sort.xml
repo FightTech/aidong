@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/rg_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rb_sentiment"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:button="@null"
+            android:gravity="center"
+            android:text="人气最高"
+            android:checked="true"
+            android:background="@drawable/selector_rb_sort"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_distance"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:button="@null"
+            android:gravity="center"
+            android:text="离我最近"
+            android:background="@drawable/selector_rb_sort"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_price"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:button="@null"
+            android:gravity="center"
+            android:text="价格最低"
+            android:background="@drawable/selector_rb_sort"
+            />
+    </RadioGroup>
+</LinearLayout>

@@ -29,6 +29,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 			case R.id.textView:
 				startActivity(new Intent(getActivity(),LoginActivity.class));
 				break;
+		/*	case R.id.tv_health:
+				//startActivity(new Intent(getActivity(),HealthDataActivity.class));
+				break;*/
+
 		}
 	}
 }

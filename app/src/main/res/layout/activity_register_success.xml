@@ -47,48 +47,61 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/rg_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
             android:layout_marginTop="60dp">
 
-            <TextView
+            <RadioButton
+                android:id="@+id/rb_man"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@mipmap/man"
+                android:drawableTop="@drawable/selector_gender_man"
                 android:gravity="center_horizontal"
-                android:text="男" />
+                android:text="男"
+                android:button="@null"
+                android:checked="true"
+                />
 
-            <TextView
+            <RadioButton
+                android:id="@+id/rb_woman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:drawableTop="@mipmap/woman_not"
+                android:drawableTop="@drawable/selector_gender_woman"
                 android:gravity="center_horizontal"
-                android:text="女" />
-        </LinearLayout>
+                android:text="女"
+                android:button="@null"
+                />
+        </RadioGroup>
 
         <RelativeLayout
+            android:id="@+id/rl_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
-            <EditText
+            <TextView
+                android:id="@+id/tv_age"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:background="@null"
                 android:hint="请设置年龄"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/gray_cc"
+                />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="@mipmap/next" />
+                android:background="@drawable/more" />
         </RelativeLayout>
 
         <View
@@ -128,14 +141,13 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/iv_head"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@mipmap/head_register"
+        android:background="@drawable/head"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tv_tip"
         android:layout_marginTop="10dp"
         />
-
-
 </RelativeLayout>
