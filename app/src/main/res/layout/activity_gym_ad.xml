@@ -147,120 +147,134 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="15dp"
-        android:layout_below="@+id/relativeLayout2"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout3">
+        android:background="@color/white"
+        android:padding="@dimen/layout_margin"
+        android:layout_below="@+id/relativeLayout2">
 
-
-        <ImageView
-            android:id="@+id/im_ad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/card"/>
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="17dp"
-            android:text="秒杀团购月卡(50人起)"
-            android:layout_alignTop="@+id/im_ad"
-            android:layout_toEndOf="@+id/im_ad" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView6"
-            android:layout_alignTop="@+id/textView6"
-            android:layout_marginTop="27dp"
-            android:text="剩余" />
-
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/gray_cc"
-            android:text="4"
-            android:layout_alignBaseline="@+id/textView7"
-            android:layout_alignBottom="@+id/textView7"
-            android:layout_toEndOf="@+id/textView7"
-            android:layout_marginStart="21dp" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="小时"
-            android:layout_alignBaseline="@+id/tv_time"
-            android:layout_alignBottom="@+id/tv_time"
-            android:layout_toEndOf="@+id/tv_time"
-            android:layout_marginStart="16dp" />
-
-        <ImageButton
-            android:id="@+id/imageView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/im_detail_selector"
-            android:layout_below="@+id/textView6"
-            android:layout_alignEnd="@+id/bt_buynow" />
-
-        <View
-            android:layout_width="150dp"
-            android:layout_marginTop="2dp"
-            android:background="@color/gray"
-            android:layout_height="1dp"
-            android:layout_below="@+id/textView7"
-            android:layout_alignStart="@+id/textView7"
-            android:id="@+id/view" />
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/im_ad"
-            android:layout_alignStart="@+id/view"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/red"
-            android:text="280" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="元/月"
-            android:layout_marginLeft="10dp"
-            android:textSize="12sp"
-
-            android:layout_alignBaseline="@+id/textView9"
-            android:layout_alignBottom="@+id/textView9"
-            android:layout_toEndOf="@+id/textView9" />
-
-        <ImageButton
-            android:id="@+id/bt_buynow"
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buynow"
-            android:layout_below="@+id/im_ad"
-            android:layout_alignStart="@+id/im_ad" />
-
-        <TextView
-            android:id="@+id/tv_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="(已团购28,剩余14)"
-            android:layout_alignBottom="@+id/bt_buynow"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="18dp"
-            android:textSize="12sp"
-            android:layout_marginBottom="12dp" />
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </RelativeLayout>
+
+    <!-- <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@color/white"
+         android:padding="15dp"
+         android:layout_below="@+id/relativeLayout2"
+         android:layout_alignParentStart="true"
+         android:id="@+id/relativeLayout3">
+
+
+         <ImageView
+             android:id="@+id/im_ad"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@drawable/card"/>
+
+         <TextView
+             android:id="@+id/textView6"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="17dp"
+             android:text="秒杀团购月卡(50人起)"
+             android:layout_alignTop="@+id/im_ad"
+             android:layout_toEndOf="@+id/im_ad" />
+
+         <TextView
+             android:id="@+id/textView7"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignStart="@+id/textView6"
+             android:layout_alignTop="@+id/textView6"
+             android:layout_marginTop="27dp"
+             android:text="剩余" />
+
+         <TextView
+             android:id="@+id/tv_time"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@color/gray_cc"
+             android:text="4"
+             android:layout_alignBaseline="@+id/textView7"
+             android:layout_alignBottom="@+id/textView7"
+             android:layout_toEndOf="@+id/textView7"
+             android:layout_marginStart="21dp" />
+
+         <TextView
+             android:id="@+id/textView8"
+             android:layout_marginLeft="10dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="小时"
+             android:layout_alignBaseline="@+id/tv_time"
+             android:layout_alignBottom="@+id/tv_time"
+             android:layout_toEndOf="@+id/tv_time"
+             android:layout_marginStart="16dp" />
+
+         <ImageButton
+             android:id="@+id/imageView16"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@drawable/im_detail_selector"
+             android:layout_below="@+id/textView6"
+             android:layout_alignEnd="@+id/bt_buynow" />
+
+         <View
+             android:layout_width="150dp"
+             android:layout_marginTop="2dp"
+             android:background="@color/gray"
+             android:layout_height="1dp"
+             android:layout_below="@+id/textView7"
+             android:layout_alignStart="@+id/textView7"
+             android:id="@+id/view" />
+         <TextView
+             android:id="@+id/textView9"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignBottom="@+id/im_ad"
+             android:layout_alignStart="@+id/view"
+             android:textSize="18sp"
+             android:layout_marginTop="5dp"
+             android:textColor="@color/red"
+             android:text="280" />
+
+         <TextView
+             android:id="@+id/textView10"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="元/月"
+             android:layout_marginLeft="10dp"
+             android:textSize="12sp"
+
+             android:layout_alignBaseline="@+id/textView9"
+             android:layout_alignBottom="@+id/textView9"
+             android:layout_toEndOf="@+id/textView9" />
+
+         <ImageButton
+             android:id="@+id/bt_buynow"
+             android:layout_marginTop="15dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@drawable/buynow"
+             android:layout_below="@+id/im_ad"
+             android:layout_alignStart="@+id/im_ad" />
+
+         <TextView
+             android:id="@+id/tv_count"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="@color/white"
+             android:text="(已团购28,剩余14)"
+             android:layout_alignBottom="@+id/bt_buynow"
+             android:layout_alignParentRight="true"
+             android:layout_marginRight="18dp"
+             android:textSize="12sp"
+             android:layout_marginBottom="12dp" />
+
+     </RelativeLayout>-->
 
 </RelativeLayout>

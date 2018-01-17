@@ -13,11 +13,31 @@ import java.util.List;
  * Created by foryoung on 2017/12/24.
  */
 
-public abstract class RecycleAbstractAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class RecycleAbstractAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
 
     public static final int TYPE_HEADER = 0;  //说明是带有Header的
     public static final int TYPE_FOOTER = 1;  //说明是带有Footer的
     public static final int TYPE_NORMAL = 2;  //说明是不带有header和footer的
+
+    private OnItemClickListener mOnItemClickListener = null;
+    //define interface
+    public static interface OnItemClickListener {
+        void onItemClick(View view , int position);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (mOnItemClickListener != null) {
+            //注意这里使用getTag方法获取position
+            mOnItemClickListener.onItemClick(v,(int)((View)v.getParent()).getTag());
+
+        }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+
 
     //获取从Activity中传递过来每个item的数据集合
     protected List<String> mDatas;
@@ -76,6 +96,7 @@ public abstract class RecycleAbstractAdapter extends RecyclerView.Adapter<Recycl
     //绑定View，这里是根据返回的这个position的类型，从而进行绑定的，   HeaderView和FooterView, 就不同绑定了
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        holder.itemView.setTag(position);
         if (getItemViewType(position) == TYPE_NORMAL) {
             if (holder instanceof ListHolder) {
                 //这里加载数据的时候要注意，是从position-1开始，因为position==0已经被header占用了
