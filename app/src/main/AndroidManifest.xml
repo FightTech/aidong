@@ -65,6 +65,9 @@
         <activity android:name=".activity.GymFavActivity"/>
         <activity android:name=".activity.PublishActivity"/>
         <activity android:name=".activity.WalletActivity"/>
+        <activity android:name=".activity.RechargeActivity"/>
+        <activity android:name=".activity.GroupBuyActivity"/>
+        <activity android:name=".activity.MyCollectionActivity"/>
     </application>
 
 </manifest>

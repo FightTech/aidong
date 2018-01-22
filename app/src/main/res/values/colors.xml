@@ -163,4 +163,8 @@
     <color name="actionsheet_red">#FD4A2E</color>
     <color name="actionsheet_gray">#8F8F8F</color>
 
+    <!-- tab -->
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="tab_indicator">#F95757</color>
+    <color name="selectedTabTextColor">#F23B3B</color>
 </resources>

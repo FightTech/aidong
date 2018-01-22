@@ -22,6 +22,7 @@ import com.fanting.aidongtan.utils.DisplayUtil;
 public class WalletActivity extends BaseActivity implements View.OnClickListener {
     private Button btn_acitonbar_left, btn_acitonbar_right;
     private TextView tv_actionbar_title;
+    private RelativeLayout rl_chongzhi, rl_tixian;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -31,17 +32,24 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
         btn_acitonbar_left = findViewById(R.id.btn_acitonbar_left);
         btn_acitonbar_right = findViewById(R.id.btn_acitonbar_right);
         tv_actionbar_title = findViewById(R.id.tv_actionbar_title);
+        btn_acitonbar_right.setVisibility(View.VISIBLE);
         btn_acitonbar_left.setOnClickListener(this);
         tv_actionbar_title.setText("钱包");
-        RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, DisplayUtil.dip2px(this,5),0,0);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, DisplayUtil.dip2px(this, 5), 0, 0);
         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         btn_acitonbar_right.setLayoutParams(params);
         btn_acitonbar_right.setTextColor(Color.WHITE);
-        btn_acitonbar_right.setTextSize(DisplayUtil.sp2px(this,4));
+        btn_acitonbar_right.setTextSize(DisplayUtil.sp2px(this, 4));
         btn_acitonbar_right.setText("交易记录");
         btn_acitonbar_right.setBackgroundColor(getResources().getColor(R.color.transparent));
         btn_acitonbar_right.setOnClickListener(this);
+
+        rl_chongzhi = findViewById(R.id.rl_chongzhi);
+        rl_chongzhi.setOnClickListener(this);
+        rl_tixian = findViewById(R.id.rl_tixian);
+        rl_tixian.setOnClickListener(this);
+
     }
 
     @Override
@@ -52,6 +60,9 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.btn_acitonbar_right:
                 startActivity(new Intent(this, SearchActivity.class));
+                break;
+            case R.id.rl_chongzhi:
+                startActivity(new Intent(this, RechargeActivity.class));
                 break;
         }
     }
