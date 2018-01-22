@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.fanting.aidongtan.constant.MyConstant;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.fanting.aidongtan.handler.CrashHandler;
 import com.fanting.aidongtan.utils.AppManager;
 
@@ -16,7 +18,7 @@ public class AppContext extends Application {
 
 
 
-
+	public static RequestQueue queue;
 	private static boolean isLogin;//登陆状态
 	private static Date sysTime;//网络日期
 	//private static User loginUser;//登陆用户
@@ -35,9 +37,16 @@ public class AppContext extends Application {
 		// 注册crashHandler
 		crashHandler.init(getApplicationContext());
 		// 发送以前没发送的报告(可选)
+<<<<<<< HEAD
 		crashHandler.sendPreviousReportsToServer();*/
 		//初始化缓存路径
 		initCachePath();
+		//crashHandler.sendPreviousReportsToServer();
+		queue = Volley.newRequestQueue(getApplicationContext());
+	}
+
+	public static RequestQueue getQueue() {
+		return queue;
 	}
 
 	public static Context getContext() {
